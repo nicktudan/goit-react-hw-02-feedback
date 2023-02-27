@@ -14,14 +14,17 @@ export class App extends Component {
   };
 
 
-  handleBtnClickFeedback = evt => {
-    if (evt === 'Good') {
-      this.setState({ good: this.state.good + 1 });
-    } else if (evt === 'Neutral') {
-      this.setState({ neutral: this.state.neutral + 1 });
-    } else if (evt === 'Bad') {
-      this.setState({ bad: this.state.bad + 1 });
-    }
+  handleBtnClickFeedback = (evt) => {
+    this.setState((prevState) => {
+      return { [evt.target.textContent]: prevState[evt.target.textContent] +1 };
+  });
+    // if (evt === 'good') {
+    //   this.setState({ good: this.state.good + 1 });
+    // } else if (evt === 'neutral') {
+    //   this.setState({ neutral: this.state.neutral + 1 });
+    // } else if (evt === 'bad') {
+    //   this.setState({ bad: this.state.bad + 1 });
+    // }
   };
 
   countTotalFeedback() {
@@ -42,7 +45,8 @@ export class App extends Component {
         <GlobalStyle />
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={['Good', 'Neutral', 'Bad']}
+            // options={['good', 'neutral', 'bad']}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.handleBtnClickFeedback}
           />
         </Section>

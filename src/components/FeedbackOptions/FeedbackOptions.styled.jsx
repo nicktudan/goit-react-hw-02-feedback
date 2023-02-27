@@ -12,6 +12,7 @@ export const Button = styled.button`
     border: 1px solid black;
     border-radius: 4px;
     background-color: #dcdcdc;
+    text-transform: capitalize;
     cursor: pointer;
 
     :hover,
